@@ -10,11 +10,9 @@ void sort(int *arr, int length){
     int i,j,k;
     //all indices run from 0 to length-1
     #pragma acc data copy(arr[0:length])
-    #pragma acc kernels
-    #pragma acc loop seq
     for (k = 2; k <= n; k *= 2){ // k is doubled every iteration
-        #pragma acc loop seq
         for (j = k/2; j > 0; j /= 2){ // j is halved at every iteration, with truncation of fractional parts
+            #pragma acc kernels
             #pragma acc loop seq
             for (i = 0; i < n; i++){
                 int l;
