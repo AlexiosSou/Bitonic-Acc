@@ -13,7 +13,7 @@ void sort(int *arr, int length){
     for (k = 2; k <= n; k *= 2){ // k is doubled every iteration
         for (j = k/2; j > 0; j /= 2){ // j is halved at every iteration, with truncation of fractional parts
             #pragma acc kernels
-            #pragma acc loop seq
+            #pragma acc loop independent
             for (i = 0; i < n; i++){
                 int l;
                 l = i^j; // in C-like languages this is "i ^ j"
